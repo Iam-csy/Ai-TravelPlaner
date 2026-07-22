@@ -1,18 +1,24 @@
 
-import { ChatOllama } from "@langchain/ollama";
-import { weather } from "../Tool/weatherTool";
 
-const ask = async (data) => {
+import { weatherTool } from "../Tool/weatherTool";
+import {UserPrompt} from"../prompt/UserPrompt";
 
-    const resp=weather(data);
-    const llm = new ChatOllama({
-        model: "llama3.2",
-        temperature: 0.7,
-    });
+import {llm} from "../models/model.js"
 
-    const response = await llm.invoke(res);
+export const AskLLM = async (data) => {
+
+    const res=weatherTool(data);
+
+
+
+    const chain=UserPrompt.pipe(llm);
+
+
+    const response =chain.invoke(res);
+
+
+ 
 
     return response.content;
 };
 
-export default ask;

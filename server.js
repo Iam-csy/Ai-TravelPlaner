@@ -2,7 +2,8 @@
 import express  from "express";
 
 const app=express();
-import ask from"./services/AskLLM.js"
+
+import {AskLLM} from"./services/AskLLM.js"
 
 app.get("/",(req,res)=>{
 
@@ -11,9 +12,9 @@ app.get("/",(req,res)=>{
 
 app.get("/travel",(req,res)=>{
 
-    const {city}=req.query;
 
-    const response=ask(city);
+
+    const response=AskLLM(req.query);
 
     res.send(response);
 

@@ -1,13 +1,13 @@
 
 
 
-export const weather=async (data)=>{
+export const weatherTool=async (data)=>{
 
-    const res={
-        city:data.city,
-        temp:"32 degree",
-    }
+ 
     
 
-    return res;
+    return {
+        city:data.city,
+        deg: "35 deg"
+    }
 }
