@@ -1,24 +1,19 @@
+import { weatherTool } from "../Tool/weatherTool.js";
+import UserPrompt from "../prompt/UserPrompt.js";
+import { llm } from "../models/model.js";
 
+export const AskLLM = async (city, question) => {
 
-import { weatherTool } from "../Tool/weatherTool";
-import {UserPrompt} from"../prompt/UserPrompt";
+    const weather = await weatherTool(city);
 
-import {llm} from "../models/model.js"
+    const chain = UserPrompt.pipe(llm);
 
-export const AskLLM = async (data) => {
+    const response = await chain.invoke({
 
-    const res=weatherTool(data);
+        weather,
+        question
 
-
-
-    const chain=UserPrompt.pipe(llm);
-
-
-    const response =chain.invoke(res);
-
-
- 
+    });
 
     return response.content;
 };
-

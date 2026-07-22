@@ -1,16 +1,17 @@
-import React from 'react'
+import { ChatPromptTemplate } from "@langchain/core/prompts";
 
-const UserPrompt = `You are an AI weather assistant.
+const UserPrompt = ChatPromptTemplate.fromTemplate(`
+You are an AI Travel Planner.
 
-Whenever the user asks about weather,
-use the weather tool.
+Use the weather information provided.
 
-Always explain weather in simple language.
-`
+Weather:
+{weather}
 
+User Question:
+{question}
 
+Give a helpful travel recommendation.
+`);
 
-    
-
-
-
+export default UserPrompt;

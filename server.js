@@ -1,30 +1,46 @@
+import express from "express";
+import { AskLLM } from "./services/AskLLM.js";
 
-import express  from "express";
+const app = express();
 
-const app=express();
+app.use(express.json());
 
-import {AskLLM} from"./services/AskLLM.js"
 
 app.get("/",(req,res)=>{
-
-    res.send("hi hellow world");
+    res.send("Hello World");
 })
 
-app.get("/travel",(req,res)=>{
+app.post("/ask", async (req, res) => {
+
+    try {
+
+        const { city, question } = req.body;
+
+        const answer = await AskLLM(city, question);
 
 
+        res.send(answer)
 
-    const response=AskLLM(req.query);
+        res.json({
+            success: true,
+            answer
+        });
 
-    res.send(response);
+    } catch (err) {
 
+        console.log(err);
 
+        res.status(500).json({
+            success: false,
+            error: err.message
+        });
 
+    }
 
-})
+});
 
+app.listen(3000, () => {
 
+    console.log("Server running on port 3000");
 
-app.listen(3000,()=>{
-    console.log("server run in 3000");
-})
+});
