@@ -21,11 +21,11 @@ export async function weatherTool(city) {
 
     const current = weatherData.current;
 
-    return `
-City: ${city}
-Temperature: ${current.temperature_2m} °C
-Humidity: ${current.relative_humidity_2m} %
-Wind: ${current.wind_speed_10m} km/h
-Weather Code: ${current.weather_code}
-`;
+   return {
+    city,
+    temperature: `${current.temperature_2m} °C`,
+    humidity: `${current.relative_humidity_2m} %`,
+    wind: `${current.wind_speed_10m} km/h`,
+    weatherCode: current.weather_code
+};
 }

@@ -18,7 +18,7 @@ app.post("/ask", async (req, res) => {
         const { city, question } = req.body;
 
         const answer = await PlannerAgent(city, question);
-
+        console.log(answer);
 
         res.json({
             success: true,
