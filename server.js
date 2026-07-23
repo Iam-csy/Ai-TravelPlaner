@@ -4,6 +4,7 @@ import { PlannerAgent } from "./services/PlannerAgent.js";
 const app = express();
 
 app.use(express.json());
+import "dotenv/config";
 
 
 app.get("/",(req,res)=>{

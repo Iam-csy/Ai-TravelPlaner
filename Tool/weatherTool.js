@@ -1,5 +1,7 @@
 export async function weatherTool(city) {
 
+    const api=process.env.weatherApiKey;
+
     return `
 City : ${city}
 Temperature : 29°C
