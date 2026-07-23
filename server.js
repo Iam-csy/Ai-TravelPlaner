@@ -1,5 +1,5 @@
 import express from "express";
-import { AskLLM } from "./services/AskLLM.js";
+import { PlannerAgent } from "./services/PlannerAgent.js";
 
 const app = express();
 
@@ -16,10 +16,8 @@ app.post("/ask", async (req, res) => {
 
         const { city, question } = req.body;
 
-        const answer = await AskLLM(city, question);
+        const answer = await PlannerAgent(city, question);
 
-
-        res.send(answer)
 
         res.json({
             success: true,
